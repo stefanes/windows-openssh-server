@@ -15,7 +15,7 @@ $pwshPath = (Get-Command pwsh).Source
 New-ItemProperty -Path "HKLM:\SOFTWARE\OpenSSH" -Name DefaultShell -Value $pwshPath -PropertyType String -Force
 
 # Add public key to authorized_keys file on server
-$authorizedKeys = Get-Content -Path "$PSScriptRoot\ssh\*.pub"
+$authorizedKeys = Get-Content -Path "$PSScriptRoot\authorized_keys\*.pub"
 New-Item -Path $env:USERPROFILE\.ssh -ItemType Directory -Force
 Add-Content -Path "$env:USERPROFILE\.ssh\authorized_keys" -Value $authorizedKeys -Force
 Add-Content -Path "$env:ProgramData\ssh\administrators_authorized_keys" -Value $authorizedKeys -Force
